@@ -53,7 +53,7 @@ int count_letters(string text)
 // Returns nbr of letters in string <text>.
 {
     int cnt = 0;
-    for (int i=0, n = strlen(text); i < n ; i++)
+    for (int i = 0, n = strlen(text); i < n ; i++)
     {
         if (isalpha(text[i]))
         {
@@ -67,7 +67,7 @@ int count_words(string text)
 // Return nbr of words in <text>.
 {
     int cnt = 0;
-    for (int i=0, n = strlen(text); i < n ; i++)
+    for (int i = 0, n = strlen(text); i < n ; i++)
     {
         if (isblank(text[i]))
         {
@@ -82,7 +82,7 @@ int count_sentences(string text)
 // Return nbr of sentences in <text>.
 {
     int cnt = 0;
-    for (int i=0, n = strlen(text); i < n ; i++)
+    for (int i = 0, n = strlen(text); i < n ; i++)
     {
         if (text[i] == '!' || text[i] == '.' || text[i] == '?')
         {
