@@ -2,6 +2,7 @@
 #include <cs50.h>
 #include <string.h>
 #include <ctype.h>
+#include <math.h>
 
 int count_letters(string text);
 int count_words(string text);
@@ -12,14 +13,38 @@ int main(void)
     //Prompt user for input text.
     string text = get_string("Text: ");
 
+    //Count letters.
     int l = count_letters(text);
-    printf("%i letter(s)\n", l);
 
+    //Count words.
     int w = count_words(text);
-    printf("%i word(s)\n", w);
 
+    //Count sentences.
     int s = count_sentences(text);
-    printf("%i sentence(s)\n", s);
+
+    // Compute mean nbr of letters per 100 words.
+    float L = 100 * (float) l / (float) w;
+
+    // Compute mean nbr of sentences per 100 words.
+    float S = 100 * (float) s / (float) w;
+
+    // Compute Coleman-Liau index.
+    int index = round(0.0588 * L - 0.296 * S - 15.8);
+
+    // Get grade readabality.
+    if (index < 1)
+    {
+        printf("Before grade 1\n");
+    }
+    else if (index > 16)
+    {
+        printf("Grade 16+\n");
+    }
+    else
+    {
+        printf("Grade %i\n", index);
+    }
+    
 
     return 0;
 }
