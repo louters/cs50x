@@ -9,7 +9,7 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": ["-g", "images/yard.bmp", "out.bmp"],
+            "args": ["-r", "images/yard.bmp", "out.bmp"],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
