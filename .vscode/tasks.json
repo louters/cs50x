@@ -26,6 +26,29 @@
         },
         {
             "type": "shell",
+            "label": "gcc build pset4-filter",
+            "command": "/usr/bin/gcc",
+            "args": [
+            "-g",
+            "${file}",
+            "-o",
+            "${fileDirname}/${fileBasenameNoExtension}",
+            "${fileDirname}/helpers.c",
+            "-lm"
+            ],
+            "options": {
+                "cwd": "/usr/bin"
+            },
+            "problemMatcher": [
+                "$gcc"
+            ],
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            },
+        },
+        {
+            "type": "shell",
             "label": "gcc build active file",
             "command": "/usr/bin/gcc",
             "args": [
