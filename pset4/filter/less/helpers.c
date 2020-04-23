@@ -4,18 +4,12 @@
 
 #include "helpers.h"
 
+// Blur a pixel in an image
 void blur_pixel(int height, int width, RGBTRIPLE image[height][width],
                 RGBTRIPLE image_copy[height][width], int row, int col);
 
 // Swap two RGBTRIPLE
-void swap(RGBTRIPLE *a, RGBTRIPLE *b)
-{
-    RGBTRIPLE tmp;
-    tmp = *a;
-    *a = *b;
-    *b = tmp;
-    return;
-}
+void swap(RGBTRIPLE *a, RGBTRIPLE *b);
 
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
@@ -108,6 +102,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     return;
 }
 
+// Blur pixel in an image.
 void blur_pixel(int height, int width, RGBTRIPLE image[height][width],
                 RGBTRIPLE image_copy[height][width], int row, int col)
 {
@@ -146,4 +141,14 @@ void blur_pixel(int height, int width, RGBTRIPLE image[height][width],
     image[row][col].rgbtGreen = mean_green;
     image[row][col].rgbtBlue = mean_blue;
 
+}
+
+// Swap two RGBTRIPLE
+void swap(RGBTRIPLE *a, RGBTRIPLE *b)
+{
+    RGBTRIPLE tmp;
+    tmp = *a;
+    *a = *b;
+    *b = tmp;
+    return;
 }
