@@ -11,6 +11,10 @@ void blur_pixel(int height, int width, RGBTRIPLE image[height][width],
 // Swap two RGBTRIPLE
 void swap(RGBTRIPLE *a, RGBTRIPLE *b);
 
+// Copy image
+void copy_image(int height, int width, RGBTRIPLE original[height][width],
+                RGBTRIPLE copy[height][width]);
+
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -50,13 +54,7 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 {
     // Copy image
     RGBTRIPLE(*image_copy)[width] = calloc(height, width * sizeof(RGBTRIPLE));
-    for (int i = 0; i < height; i++)
-    {
-        for (int j = 0; j < width; j++)
-        {
-            image_copy[i][j] = image[i][j];
-        }
-    }
+    copy_image(height, width, image, image_copy);
 
     // Blur each pixel
     for (int i = 0; i < height; i++)
@@ -76,6 +74,21 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
+    // Copy original image
+    RGBTRIPLE(*image_copy)[width] = calloc(height, width * sizeof(RGBTRIPLE));
+    copy_image(height, width, image, image_copy);
+
+    // 
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            // Set new color channel values for pixel
+
+        }
+    }
+    // Free memory from image copy
+    free(image_copy);
     return;
 }
 
@@ -129,3 +142,17 @@ void swap(RGBTRIPLE *a, RGBTRIPLE *b)
     *b = tmp;
     return;
 }
+
+// Copy image
+void copy_image(int height, int width, RGBTRIPLE original[height][width],
+                RGBTRIPLE copy[height][width])
+    {
+        // Copy each pixel
+        for (int i = 0; i < height; i++)
+        {
+            for (int j = 0; j < width; j++)
+            {
+                copy[i][j] = original[i][j];
+            }
+        }
+    }
