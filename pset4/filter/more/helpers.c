@@ -15,6 +15,10 @@ void swap(RGBTRIPLE *a, RGBTRIPLE *b);
 void copy_image(int height, int width, RGBTRIPLE original[height][width],
                 RGBTRIPLE copy[height][width]);
 
+// Set pixel color with Sobel operator
+void set_pixel_edge_col(int height, int width, RGBTRIPLE image[height][width],
+                        RGBTRIPLE image_copy[height][width], int row, int col);
+
 // Convert image to grayscale
 void grayscale(int height, int width, RGBTRIPLE image[height][width])
 {
@@ -84,12 +88,65 @@ void edges(int height, int width, RGBTRIPLE image[height][width])
         for (int j = 0; j < width; j++)
         {
             // Set new color channel values for pixel
-
+            set_pixel_edge_col(height, width, image, image_copy, i, j);
         }
     }
     // Free memory from image copy
     free(image_copy);
     return;
+}
+
+// Set pixel color with Sobel operator
+void set_pixel_edge_col(int height, int width, RGBTRIPLE image[height][width],
+                        RGBTRIPLE image_copy[height][width], int row, int col)
+{
+    // Initialize kernels
+    int kernel_x[3][3] =
+    {
+        {-1, 0, 1},
+        {-2, 0, 2},
+        {-1, 0, 1}
+    };
+
+    int kernel_y[3][3] =
+    {
+        {-1, -2, -1},
+        {0, 0, 0},
+        {1, 2, 1}
+    };
+
+    // Initialize Gx & Gy {R, G, B}
+    int g_x[3] = {0, 0, 0};
+    int g_y[3] = {0, 0, 0};
+
+    for (int i = -1; i < 2; i++)
+    {
+        // Manage edges & corners
+        if (i + row >= 0 && i + row < height)
+        {
+            for (int j = -1; j < 2; j++) 
+            {
+                // Manage edges & corners
+                if (j + col >= 0 && j + col < width)
+                {
+                    g_x[0] += kernel_x[i + 1][j + 1] * image_copy[row + i][col + j].rgbtRed;
+                    g_x[1] += kernel_x[i + 1][j + 1] * image_copy[row + i][col + j].rgbtGreen;
+                    g_x[2] += kernel_x[i + 1][j + 1] * image_copy[row + i][col + j].rgbtBlue;
+
+                    g_y[0] += kernel_y[i + 1][j + 1] * image_copy[row + i][col + j].rgbtRed;
+                    g_y[1] += kernel_y[i + 1][j + 1] * image_copy[row + i][col + j].rgbtGreen;
+                    g_y[2] += kernel_y[i + 1][j + 1] * image_copy[row + i][col + j].rgbtBlue;
+                }
+            }
+
+        }
+    } 
+    
+    // Setting channel colors
+    image[row][col].rgbtRed = fmin(255.0, round(sqrt(pow(g_x[0], 2.0) + pow(g_y[0], 2.0))));
+    image[row][col].rgbtGreen = fmin(255.0, round(sqrt(pow(g_x[1], 2.0) + pow(g_y[1], 2.0))));
+    image[row][col].rgbtBlue = fmin(255.0, round(sqrt(pow(g_x[2], 2.0) + pow(g_y[2], 2.0))));
+
 }
 
 // Blur pixel in an image.
@@ -146,13 +203,13 @@ void swap(RGBTRIPLE *a, RGBTRIPLE *b)
 // Copy image
 void copy_image(int height, int width, RGBTRIPLE original[height][width],
                 RGBTRIPLE copy[height][width])
+{
+    // Copy each pixel
+    for (int i = 0; i < height; i++)
     {
-        // Copy each pixel
-        for (int i = 0; i < height; i++)
+        for (int j = 0; j < width; j++)
         {
-            for (int j = 0; j < width; j++)
-            {
-                copy[i][j] = original[i][j];
-            }
+            copy[i][j] = original[i][j];
         }
     }
+}

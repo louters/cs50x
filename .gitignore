@@ -5,8 +5,6 @@ pset3/runoff/runoff
 pset3/tideman/tideman
 pset4/filter/less/filter
 pset4/filter/less/out.bmp
-pset4/filter/more/images/courtyard.bmp
-pset4/filter/more/images/stadium.bmp
-pset4/filter/more/images/tower.bmp
-pset4/filter/more/images/yard.bmp
+pset4/filter/more/images/*
 pset4/filter/more/filter
+pset4/filter/more/*bmp
