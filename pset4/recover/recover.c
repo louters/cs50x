@@ -19,7 +19,7 @@ int main(int argc, char *argv[])
     char *filename = argv[1];
 
     // Open input file
-    FILE *file = fopen(filename, "rb");
+    FILE *file = fopen(filename, "r");
     if (file == NULL)
     {
         fprintf(stderr, "Could not open %s\n", filename);
@@ -28,38 +28,43 @@ int main(int argc, char *argv[])
 
     // JPEG counter
     int cnt = 0;
+
+    // JPEG file name
     char *jpeg_name = malloc(sizeof("###.jpg"));
 
     // Buffer of 512B. Allocate memory of buffer.
     unsigned char buffer [512];
 
+    // Initialize outfile
+    FILE *outfile = NULL;
+
     // Read input file until end
-    while (fread(buffer, sizeof(buffer), 1, file))
+    while (fread(buffer, 512, 1, file))
     {
         // Test whether start of a jpeg
-        if( is_jpeg(buffer))
+        if (is_jpeg(buffer))
         {
+            // Close previous file if any
+            if (outfile)
+            {
+                fclose(outfile);
+                outfile = NULL;
+            }
+
             // Create JPEG output filename
             sprintf(jpeg_name, "%03i.jpg", cnt);
-
             // Open JPEG output file
-            FILE *outfile = fopen(jpeg_name, "w");
-            printf("%s\n", jpeg_name);
-            // // while no new signature
-            // do             
-            // {
-            //     // Write to JPEG
-            //     //printf("%s\n", buffer);
-            //     fprintf(outfile, "%s", buffer);
-            //     // Read from file
-            //     fread(buffer, sizeof(buffer), 1, file);
-            // }
-            // while (!is_jpeg(buffer));
+            outfile = fopen(jpeg_name, "w");
 
-
-            // Close JPEG output file
-            fclose(outfile);
+            // Update counter
             cnt++;
+        }
+
+        // if file opened, write
+        if (outfile)
+        {
+            // Write JPEG
+            fwrite(buffer, 512, 1, outfile);
         }
     }
 
@@ -75,14 +80,15 @@ int main(int argc, char *argv[])
 // Check for JPEG signature
 bool is_jpeg(unsigned char buffer[])
 {
-    if (
+    if
+    (
         buffer[0] == 0xff
         && buffer[1] == 0xd8
         && buffer[2] == 0xff
         && (buffer [4] >> 4) ^ 0b1110
-        )
-        {
-            return true;
-        }
+    )
+    {
+        return true;
+    }
     return false;
 }
