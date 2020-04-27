@@ -10,7 +10,6 @@
                 "${file}",
                 "-o",
                 "${fileDirname}/${fileBasenameNoExtension}",
-                "-lcs50",
                 "-lm"
             ],
             "options": {
