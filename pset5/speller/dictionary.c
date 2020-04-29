@@ -25,7 +25,7 @@ int word_count = 0;
 void insert(char *word);
 
 // Number of buckets in hash table
- #define N 10//524287 
+#define N 524287 
 
 // Hash table
 node *table[N];
@@ -86,7 +86,7 @@ unsigned int hash(const char *word)
         // Alpha char
         else
         {
-            c_int = (tolower(word[i] - 96));
+            c_int = tolower(word[i]) - 96;
         }
 
         //h += c_int * pow(p, i);
@@ -145,7 +145,7 @@ unsigned int size(void)
 bool unload(void)
 {
     // Go through each element of array
-    for (int i = 0; i < LENGTH; i++)
+    for (int i = 0; i < N; i++)
     {
         if (table[i] != NULL)
         {
