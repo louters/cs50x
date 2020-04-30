@@ -8,3 +8,7 @@ pset4/filter/less/out.bmp
 pset4/filter/more/images/*
 pset4/filter/more/filter
 pset4/filter/more/*bmp
+pset5/Makefile
+pset5/speller/out
+pset5/speller/out_1k
+pset5/speller/script.py
