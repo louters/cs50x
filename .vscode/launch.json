@@ -4,31 +4,46 @@
     // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
     "version": "0.2.0",
     "configurations": [
-    {
-        "name": "(gdb) Launch SPELLER",
-        "type": "cppdbg",
-        "request": "launch",
-        "program": "${fileDirname}/speller",
-        "args": ["dictionaries/small", "texts/cat_upper.txt"],
-        "stopAtEntry": false,
-        "cwd": "${fileDirname}",
-        "environment": [],
-        "externalConsole": false,
-        "MIMode": "gdb",
-        "setupCommands": [
-            {
-                "description": "Enable pretty-printing for gdb",
-                "text": "-enable-pretty-printing",
-                "ignoreFailures": true
-            }
-        ]
-    },
+
+        {
+            "name": "Python: Current File",
+            "type": "python",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal",
+            "args": ["${fileDirname}/databases/small.csv",
+                    "${fileDirname}/sequences/1.txt"]
+        },
+        {
+            "name": "(gdb) Launch SPELLER",
+            "type": "cppdbg",
+            "request": "launch",
+            "program": "${fileDirname}/speller",
+            "args": [
+                "dictionaries/small",
+                "texts/cat_upper.txt"
+            ],
+            "stopAtEntry": false,
+            "cwd": "${fileDirname}",
+            "environment": [],
+            "externalConsole": false,
+            "MIMode": "gdb",
+            "setupCommands": [
+                {
+                    "description": "Enable pretty-printing for gdb",
+                    "text": "-enable-pretty-printing",
+                    "ignoreFailures": true
+                }
+            ]
+        },
         {
             "name": "(gdb) Launch recover",
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": ["${fileDirname}/card.raw"],
+            "args": [
+                "${fileDirname}/card.raw"
+            ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
@@ -47,7 +62,11 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": ["-b", "images/yard.bmp", "out.bmp"],
+            "args": [
+                "-b",
+                "images/yard.bmp",
+                "out.bmp"
+            ],
             "stopAtEntry": false,
             "cwd": "${fileDirname}",
             "environment": [],
@@ -66,7 +85,11 @@
             "type": "cppdbg",
             "request": "launch",
             "program": "${fileDirname}/${fileBasenameNoExtension}",
-            "args": ["a", "b", "c"],
+            "args": [
+                "a",
+                "b",
+                "c"
+            ],
             "stopAtEntry": false,
             "cwd": "${workspaceFolder}",
             "environment": [],
