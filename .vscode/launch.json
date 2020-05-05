@@ -11,8 +11,8 @@
             "request": "launch",
             "program": "${file}",
             "console": "integratedTerminal",
-            "args": ["${fileDirname}/databases/small.csv",
-                    "${fileDirname}/sequences/1.txt"]
+            "args": ["Hufflepuff"],
+            "cwd": "${fileDirname}"
         },
         {
             "name": "(gdb) Launch SPELLER",
