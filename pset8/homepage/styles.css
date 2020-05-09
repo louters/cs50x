@@ -1,0 +1,63 @@
+body
+{
+    background-image: url("bg1.jpeg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
+
+.card
+{
+    background-color: rgb(52, 58, 64);
+    color: whitesmoke;
+}
+
+.btn:hover
+{
+    background-color: green;
+    color: whitesmoke;
+}
+
+#homepageBanner
+{
+    text-align: center;
+    text-rendering: optimizeLegibility;
+    color: white;
+    text-shadow: 
+        0.05em 0 black,
+        0 0.05em black,
+        -0.05em 0 black,
+        0 -0.05em black,
+        -0.05em -0.05em black,
+        -0.05em 0.05em black,
+        0.05em -0.05em black,
+        0.05em 0.05em black;
+
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    font-weight: bold;
+
+    width: auto;
+    height: 150px;
+    position:absolute;
+    top:0;
+    right:0;
+    bottom:0;
+    left:0;
+    margin:auto;
+
+    background-color: rgb(0, 0, 0, 0.1);
+}
+
+#homepageBanner h1
+{
+    padding-top: 0.5em;
+    box-sizing: inherit;
+    display: block;
+    font-size: 45px;
+}
+
+#homepageBanner p
+{
+    box-sizing: inherit;
+    font-size: 24px;
+}
