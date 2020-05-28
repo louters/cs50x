@@ -23,4 +23,5 @@ The data is then structured in a multi-nested dictionary that contains all the r
 
 ## Images
 Images used come from [unsplash.com](https://unsplash.com/).
+
 Icon used comes from [favicon.io](https://favicon.io/emoji-favicons/).
