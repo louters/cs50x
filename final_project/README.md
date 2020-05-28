@@ -1,5 +1,5 @@
 # HMRC Scale Rates
-A website that allows one to look up HMRC scale rates by location (country, city), and compute the maximum allowable scale payment for a specific trip (given a location, trip's arrival & departure date and time).
+A website that allows one to look up HMRC scale rates by location (country, city), and compute the maximum allowable scale rate payment for a specific trip (given a location, trip's arrival & departure date and time).
 
 The [official HMRC webpage](https://www.gov.uk/guidance/expenses-rates-for-employees-travelling-outside-the-uk) where you can find the rates, examples, and more information.
 
@@ -16,7 +16,7 @@ The data is then structured in a multi-nested dictionary that contains all the r
 
 
 ## Road map
-- Fix parsing for when rate is stated in a currency different from country's the main currency 
+- Fix parsing when rate is stated in a currency different from the country's main currency 
 - Add register/login features
 - Add history functionality (ie consult past trips and rates)
 - Add exchange rate with GBP in order to convert scale rates to GBP
